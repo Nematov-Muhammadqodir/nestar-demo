@@ -29,7 +29,7 @@ const withLayotBasic = (Component: any) => {
             </Stack>
           </Stack>
 
-          <Stack id={"main"}>
+          <Stack id={"main"} sx={{ background: "whitesmoke" }}>
             <Component {...props} />
           </Stack>
 
