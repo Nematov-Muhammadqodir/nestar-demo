@@ -12,52 +12,62 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Box, Button, Container } from "@mui/material";
 import { NextPage } from "next";
+import useDeviceDetect from "@/libs/hooks/useDeviceDetect";
 
 const PropertyList: NextPage = () => {
-  return (
-    <div
-      id="property-list-page"
-      style={{
-        position: "relative",
-        background: "whitesmoke",
-        marginTop: "40px",
-      }}
-    >
-      <Stack className="container">
-        <Box className="right">
-          <span>Sort by</span>
-          <div>
-            <Button endIcon={<KeyboardArrowDownRoundedIcon />}>New</Button>
-          </div>
-        </Box>
-        <Stack className="main-config">
-          <Stack
-            className="sidebar-filter-main"
-            sx={{ background: "white", borderRadius: "8px", boxShadow: 3 }}
-          >
-            <Filter />
-          </Stack>
-          <Stack className="card-container-main">
-            <PropertyCard />
-            <Stack spacing={2} className="pagination-container">
-              <Pagination
-                count={5}
-                renderItem={(item) => (
-                  <PaginationItem
-                    slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                    {...item}
-                  />
-                )}
-              />
+  const device = useDeviceDetect();
+
+  if (device === "mobile") {
+    return <Stack>MOBILE PROPETYLIST</Stack>;
+  } else {
+    return (
+      <div
+        id="property-list-page"
+        style={{
+          position: "relative",
+          background: "whitesmoke",
+          marginTop: "40px",
+        }}
+      >
+        <Stack className="container">
+          <Box className="right">
+            <span>Sort by</span>
+            <div>
+              <Button endIcon={<KeyboardArrowDownRoundedIcon />}>New</Button>
+            </div>
+          </Box>
+          <Stack className="main-config">
+            <Stack
+              className="sidebar-filter-main"
+              sx={{ background: "white", borderRadius: "8px", boxShadow: 3 }}
+            >
+              <Filter />
             </Stack>
-            <Stack className="property-count">
-              <span>Total 0 property available</span>
+            <Stack className="card-container-main">
+              <PropertyCard />
+              <Stack spacing={2} className="pagination-container">
+                <Pagination
+                  count={5}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      slots={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                    />
+                  )}
+                />
+              </Stack>
+              <Stack className="property-count">
+                <span>Total 0 property available</span>
+              </Stack>
             </Stack>
           </Stack>
         </Stack>
-      </Stack>
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default withLayotBasic(PropertyList);
