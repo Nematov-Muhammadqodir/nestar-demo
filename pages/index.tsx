@@ -34,10 +34,7 @@ const Home: NextPage = () => {
     },
   });
 
-  console.log("getPropertiesLoading", getPropertiesLoading);
   console.log("getPropertiesData", getPropertiesData);
-  console.log("getPropertiesError", getPropertiesError);
-  console.log("getPropertiesRefetch", getPropertiesRefetch);
 
   if (device === "mobile") {
     return <Stack>HOMEPAGE MOBILE</Stack>;
